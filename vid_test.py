@@ -25,10 +25,10 @@ if __name__ == "__main__":
         for batch in [1,2,4,8,16]:
             img = np.random.random((batch,1920,1080,3)).astype('uint8')
             t = time.time()
-            for _ in range(10):
+            for _ in range(100):
                 dets = detector.detect(img[:, :, ::-1])
                 # dets = detector.detect(img[:, :, ::-1])[:, :4]
-            print(f"Detection time for {i} resolution,{batch} batch: {((time.time()- t)*1000)/10:.3f} milli_secs on device {detector.device}")
+            print(f"Detection time for {i} resolution,{batch} batch: {((time.time()- t)*1000)/100:.3f} milli_secs on device {detector.device}")
 
         print('-'*50)
     # cv2.imshow('img',img)
