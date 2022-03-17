@@ -23,9 +23,9 @@ if __name__ == "__main__":
             max_resolution=i
         )
         for batch in [1,2,4,8,16]:
+            img = np.random.random((batch,1920,1080,3)).astype('uint8')
             t = time.time()
             for _ in range(10):
-                img = np.random.random((batch,1920,1080,3)).astype('uint8')
                 dets = detector.detect(img[:, :, ::-1])
                 # dets = detector.detect(img[:, :, ::-1])[:, :4]
             print(f"Detection time for {i} resolution,{batch} batch: {((time.time()- t)*1000)/10:.3f} milli_secs on device {detector.device}")
