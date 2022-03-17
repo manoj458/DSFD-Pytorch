@@ -29,6 +29,8 @@ if __name__ == "__main__":
                 dets = detector.detect(img[:, :, ::-1])
                 # dets = detector.detect(img[:, :, ::-1])[:, :4]
             print(f"Detection time for {i} resolution,{batch} batch: {((time.time()- t)*1000)/10:.3f} milli_secs on device {detector.device}")
+
+        print('-'*50)
     # cv2.imshow('img',img)
     # cv2.waitKey(0)
 
