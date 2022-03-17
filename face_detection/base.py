@@ -52,7 +52,8 @@ class Detector(ABC):
         Returns:
             np.ndarray: shape [N, 5] with (xmin, ymin, xmax, ymax, score)
         """
-        image = image[None]
+        # image = image[None]
+
         boxes = self.batched_detect(image, shrink)
         return boxes[0]
 
@@ -140,7 +141,7 @@ class Detector(ABC):
             np.ndarray: a list with N set of bounding boxes of
                 shape [B, 5] with (xmin, ymin, xmax, ymax, score)
         """
-        check_image(image)
+        # check_image(image)
         height, width = image.shape[1:3]
         image = self._pre_process(image, shrink)
         boxes = self._batched_detect(image)

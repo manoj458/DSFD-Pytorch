@@ -16,16 +16,19 @@ def draw_faces(im, bboxes):
 if __name__ == "__main__":
 
     # vid = cv2.VideoCapture(0)
-    for i in range(120,1081,30):
+    # for i in range(120,1081,30):
+    for i in [120,540,720,1080]:
         detector = face_detection.build_detector(
             "DSFDDetector",
             max_resolution=i
         )
-        img = np.random.random((1920,1080,3)).astype('uint8')
-        t = time.time()
-        for j in range(100):
-            dets = detector.detect(img[:, :, ::-1])[:, :4]
-        print(f"Detection time for {i} resolution: {((time.time()- t)*1000)/100:.3f} milli_secs on device {detector.device}")
+        for batch in [1,2,4,8,16]:
+            t = time.time()
+            for _ in range(10):
+                img = np.random.random((batch,1920,1080,3)).astype('uint8')
+                dets = detector.detect(img[:, :, ::-1])
+                # dets = detector.detect(img[:, :, ::-1])[:, :4]
+            print(f"Detection time for {i} resolution,{batch} batch: {((time.time()- t)*1000)/10:.3f} milli_secs on device {detector.device}")
     # cv2.imshow('img',img)
     # cv2.waitKey(0)
 
