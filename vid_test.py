@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # vid = cv2.VideoCapture(0)
     # for i in range(120,1081,30):
-    for i in [120,540,720,1080]:
+    for i in [120,540,720,960,1080]:
         detector = face_detection.build_detector(
             "DSFDDetector",
             max_resolution=i
